@@ -1,0 +1,23 @@
+2017-07-20 16:40:04 INFO   0xb8612700 (Tpooltest.c:21) - -------------------------Begin thread pool test!!!!!---------------------
+2017-07-20 16:40:14 INFO   0xb6ffd700 (Tpoolcore.c:62) - Thread[139958874527488] is registeing for monitor
+2017-07-20 16:40:14 INFO   0xb77fe700 (Tpoolcore.c:185) - Worker[139958874527488] registered over
+2017-07-20 16:40:14 INFO   0xb6ffd700 (Tpoolcore.c:74) - Thread[139958874527488] is waiting for get event
+2017-07-20 16:40:14 INFO   0xb67fc700 (Tpoolcore.c:62) - Thread[139958866134784] is registeing for monitor
+2017-07-20 16:40:14 INFO   0xb77fe700 (Tpoolcore.c:185) - Worker[139958866134784] registered over
+2017-07-20 16:40:14 INFO   0xb67fc700 (Tpoolcore.c:74) - Thread[139958866134784] is waiting for get event
+2017-07-20 16:40:14 INFO   0xb5ffb700 (Tpoolcore.c:62) - Thread[139958857742080] is registeing for monitor
+2017-07-20 16:40:14 INFO   0xb77fe700 (Tpoolcore.c:185) - Worker[139958857742080] registered over
+2017-07-20 16:40:14 INFO   0xb5ffb700 (Tpoolcore.c:74) - Thread[139958857742080] is waiting for get event
+2017-07-20 16:40:14 INFO   0xb57fa700 (Tpoolcore.c:62) - Thread[139958849349376] is registeing for monitor
+2017-07-20 16:40:14 INFO   0xb77fe700 (Tpoolcore.c:185) - Worker[139958849349376] registered over
+2017-07-20 16:40:14 INFO   0xb8612700 (Tpool.c:124) - Create Tpool success
+2017-07-20 16:40:14 INFO   0xb8612700 (Tpooltest.c:30) - cursize[4],available[4],maxsize[128],minsize[1],status[1]
+2017-07-20 16:40:14 INFO   0xb57fa700 (Tpoolcore.c:74) - Thread[139958849349376] is waiting for get event
+2017-07-20 16:40:19 INFO   0xb6ffd700 (Tpoolcore.c:76) - Thread[139958874527488] is getted event
+2017-07-20 16:40:19 INFO   0xb6ffd700 (Tpooltest.c:9) - get event!!!!!!!!!!!!!!!!!!!!!!!!!
+2017-07-20 16:40:19 INFO   0xb67fc700 (Tpoolcore.c:76) - Thread[139958866134784] is getted event
+2017-07-20 16:40:19 INFO   0xb67fc700 (Tpooltest.c:9) - get event!!!!!!!!!!!!!!!!!!!!!!!!!
+2017-07-20 16:40:19 INFO   0xb77fe700 (Tpoolcore.c:538) - Control tpool size for [-1]
+2017-07-20 16:40:19 INFO   0xb77fe700 (Tpoolcore.c:343) - Shrink pool size [-1]
+2017-07-20 16:40:19 INFO   0xb5ffb700 (Tpoolcore.c:21) - Thread[139958857742080] in cleanup program
+2017-07-20 16:40:19 INFO   0xb8612700 (Tpooltest.c:36) - cursize[3],available[1],maxsize[128],minsize[1],status[1]
