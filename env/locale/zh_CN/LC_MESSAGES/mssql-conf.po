@@ -1,0 +1,28 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-04-10 17:35+Pacific Daylight Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+msgid "Confirm the SQL Server system administrator password: "
+msgstr "配置 SQL Server 系统管理员密码: "
+
+msgid "Do you accept the license terms? [Yes/No]:"
+msgstr "接受此许可条款吗? [是/否]:"
+
+msgid "Enter Option 1-11: "
+msgstr "输入选项 1-11:"
+
+msgid "Enter the SQL Server system administrator password: "
+msgstr "输入 SQL Server 系统管理员密码: "
+
+msgid ""
+"Type '%s' or '%s' or '%s' or enter the product key (pressing Enter defaults "
+"to %s): "
+msgstr "键入“%s”或“%s”或“%s”或输入产品密钥(按 Enter 键则默认为 %s):"

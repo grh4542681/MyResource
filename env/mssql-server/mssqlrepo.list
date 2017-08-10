@@ -1,0 +1,15 @@
+DEFAULT									deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-sqlmain-standard mssql main
+mssql-p-master-dsmain-standard			deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-dsmain-standard mssql main
+mssql-p-master-prerelease-gb			deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-prerelease-gb mssql main
+mssql-p-master-prerelease-standard		deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-prerelease-standard mssql main
+mssql-p-master-sqlmain-gb				deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-sqlmain-gb mssql main
+mssql-p-master-sqlmain-standard			deb https://repo.corp.microsoft.com/ubuntu/mssql-p-master-sqlmain-standard mssql main
+mssql-p-stable-candidate-gb				deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-candidate-gb mssql main
+mssql-p-stable-candidate-standard		deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-candidate-standard mssql main
+mssql-p-stable-sqlmain-gb				deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-sqlmain-gb mssql main
+mssql-p-stable-sqlmain-standard			deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-sqlmain-standard mssql main
+mssql-p-stable-sqlprerelease-gb			deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-sqlprerelease-gb mssql main
+mssql-p-stable-sqlprerelease-standard	deb https://repo.corp.microsoft.com/ubuntu/mssql-p-stable-sqlprerelease-standard mssql main
+mssql-private-preview					deb https://repo.corp.microsoft.com/ubuntu/mssql-private-preview mssql main
+mssql-public-preview					deb https://repo.corp.microsoft.com/ubuntu/mssql-public-preview mssql main
+

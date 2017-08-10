@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-04-10 17:35+Pacific Daylight Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+msgid "Confirm the SQL Server system administrator password: "
+msgstr "Confirme a senha do administrador do sistema do SQL Server: "
+
+msgid "Do you accept the license terms? [Yes/No]:"
+msgstr "Você aceita os termos de licença? [Yes/No]:"
+
+msgid "Enter Option 1-11: "
+msgstr "Insira a Opção 1-11: "
+
+msgid "Enter the SQL Server system administrator password: "
+msgstr "Insira a senha do administrador do sistema do SQL Server: "
+
+msgid ""
+"Type '%s' or '%s' or '%s' or enter the product key (pressing Enter defaults "
+"to %s): "
+msgstr ""
+"Digite '%s' ou '%s' ou '%s' ou insira a chave do produto (Product Key) "
+"(pressionar Enter usa %s como padrão): "

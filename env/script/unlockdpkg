@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -f "/var/lib/dpkg/lock" ]
+then
+	rm -f /var/lib/dpkg/lock
+fi
+
+if [ -f "/var/cache/apt/archives/lock" ]
+then
+	rm -f /var/cache/apt/archives/lock
+fi
