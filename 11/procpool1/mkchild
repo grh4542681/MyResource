@@ -1,1 +1,0 @@
-gcc -O2 -w child_main.c log.c io.c -o child
