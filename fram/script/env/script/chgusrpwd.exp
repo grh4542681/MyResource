@@ -1,0 +1,40 @@
+#!/usr/bin/expect
+
+if {$argc<2} {
+	send_user "usage: $argv0 \\\[user\\\] \\\[Password\\\]\n"
+	exit 9
+}
+
+set ROOTPWD $env(ROOTPWD)
+set User [lindex $argv 0]
+set NewPwd [lindex $argv 1]
+
+spawn sudo passwd $User
+set timeout 2
+expect {
+	"\\\[sudo\\\] " {send "$ROOTPWD\r"}
+	timeout { } 
+	eof { exit 9 } 
+}   
+expect {
+	"\\\[sudo\\\] " { 
+		send_user "Wrong Password!" 
+		exit 9
+	}   
+	timeout { } 
+	eof { exit 9 } 
+}
+set timeout -1
+expect {
+	"UNIX" { send "$NewPwd\r" }
+	timeout { exit 9 } 
+	eof { exit 9 } 
+}
+expect {
+	"UNIX" { send "$NewPwd\r" }
+	timeout { exit 9 } 
+	eof { exit 9 } 
+}
+expect {
+	"*$" { exit 0 } 
+}

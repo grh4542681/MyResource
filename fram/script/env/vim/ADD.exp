@@ -1,0 +1,74 @@
+#!/usr/bin/expect
+
+if {$argc<2} {
+	send_user "usage: $argv0 \[Ubuntu|Red Hat|...\] \[Net|Loacl|...\] \[ |Path\]\n"
+	exit 9
+}
+set ROOTPWD $env(ROOTPWD)
+switch [lindex $argv 1] {
+	"Net" {
+		switch [lindex $argv 0] {
+			"Ubuntu" {
+				spawn sudo apt-get install -y vim
+		
+				set timeout 2
+				expect {
+					"\\\[sudo\\\] " {send "$ROOTPWD\r"}
+					timeout { }
+					eof { exit 9 }
+				}
+				expect {
+					"\\\[sudo\\\] " { 
+						send_user "Wrong Password!" 
+						exit 9
+					}
+					timeout { }
+					eof { exit 9 }
+				}
+				interact
+				exit 0
+			}
+			"Red Hat" {
+				send_user "Red Hat not support yet!"
+				exit 9
+			}
+			default {
+				send_user "Unknow Linux issue!\n"
+				exit 9
+			}
+		}
+	}
+	"Loacl" {
+		switch [lindex $argv 0] {
+			"Ubuntu" {
+				spawn sudo dpkg -i [lindex $argv 3]
+		
+				set timeout 2
+				expect {
+					"\\\[sudo\\\] " {send "$ROOTPWD\r"}
+					timeout { }
+					eof { exit 9 }
+				}
+				expect {
+					"\\\[sudo\\\] " { 
+						send_user "Wrong Password!" 
+						exit 9
+					}
+					timeout { }
+					eof { exit 9 }
+				}
+				interact
+				exit 0
+			}
+			"Red Hat" {
+				send_user "Red Hat not support yet!"
+				exit 9
+			}
+			default {
+				send_user "Unknow Linux issue!\n"
+				exit 9
+			}
+		}
+	}
+}
+

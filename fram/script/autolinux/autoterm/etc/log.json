@@ -1,0 +1,60 @@
+{
+	"basic":{
+		"type":"file",
+		"filemode":"a",
+		"format":"%(asctime)s %(name)s %(levelname)s %(message)s",
+		"datefmt":"%a, %d %b %Y %H:%M:%S",
+		"level":"ERROR",
+		"path":"root.log"
+	},
+	"logger":[
+		{
+		"name":"System",
+		"level":"INFO",
+		"handler":[
+			{
+				"type":"file",
+				"format":"%(asctime)s %(name)s %(levelname)s %(message)s",
+				"datefmt":"%a, %d %b %Y %H:%M:%S",
+				"path":"system.log",
+				"filesize":102400,
+				"filenum":10
+			},
+			{
+				"type":"stream",
+				"format":"%(asctime)s %(name)s %(levelname)s %(message)s",
+				"datefmt":"%a, %d %b %Y %H-%M-%S",
+				"object":"STDERR"
+			}
+		]
+		},
+		{
+		"name":"Terminal",
+		"level":"INFO",
+		"handler":[
+			{
+				"type":"file",
+				"format":"%(asctime)s %(name)s %(levelname)s %(message)s",
+				"datefmt":"%a, %d %b %Y %H:%M:%S",
+				"path":"terminal.log",
+				"filesize":102400,
+				"filenum":10
+			}
+		]
+		},
+		{
+		"name":"Ldtp",
+		"level":"INFO",
+		"handler":[
+			{
+				"type":"file",
+				"format":"%(asctime)s %(name)s %(levelname)s %(message)s",
+				"datefmt":"%a, %d %b %Y %H:%M:%S",
+				"path":"Ldtp.log",
+				"filesize":102400,
+				"filenum":10
+			}
+		]
+		}
+	]
+}

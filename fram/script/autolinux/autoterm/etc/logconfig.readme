@@ -1,0 +1,97 @@
+Python的时间格式。
+%a - abbreviated weekday name
+%A - full weekday name
+%b - abbreviated month name
+%B - full month name
+%c - preferred date and time representation
+%C - century number (the year divided by 100, range 00 to 99)
+%d - day of the month (01 to 31)
+%D - same as %m/%d/%y
+%e - day of the month (1 to 31)
+%g - like %G, but without the century
+%G - 4-digit year corresponding to the ISO week number (see %V).
+%h - same as %b
+%H - hour, using a 24-hour clock (00 to 23)
+%I - hour, using a 12-hour clock (01 to 12)
+%j - day of the year (001 to 366)
+%m - month (01 to 12)
+%M - minute
+%n - newline character
+%p - either am or pm according to the given time value
+%r - time in a.m. and p.m. notation
+%R - time in 24 hour notation
+%S - second
+%t - tab character
+%T - current time, equal to %H:%M:%S
+%u - weekday as a number (1 to 7), Monday=1. Warning: In Sun Solaris Sunday=1
+%U - week number of the current year, starting with the first Sunday as the first day of the first week
+%V - The ISO 8601 week number of the current year (01 to 53), where week 1 is the first week that has at least 4 days in the current year, and with Monday as the first day of the week
+%W - week number of the current year, starting with the first Monday as the first day of the first week
+%w - day of the week as a decimal, Sunday=0
+%x - preferred date representation without the time
+%X - preferred time representation without the date
+%y - year without a century (range 00 to 99)
+%Y - year including the century
+%Z or %z - time zone or name or abbreviation
+%% - a literal % character 
+我们的例子是以 年月日-时:分:秒 的形式显示日期的。 
+除此之外，还要理解%(asctime)s等格式符所代表的意义，%(asctime)s表示这个位置上是字符串形式的当前时间；%(levelname)s，如果是logger.debug则它是DEBUG，如果是logger.error则它是ERROR；%(message)s，假如有logger.warning("HAHA")，则在%(message)s位置上是字符串HAHA。更详细的格式符如下： 
+%(name)s
+
+Logger的名字
+
+%(levelno)s
+
+数字形式的日志级别
+
+%(levelname)s
+
+文本形式的日志级别
+
+%(pathname)s
+
+调用日志输出函数的模块的完整路径名，可能没有
+
+%(filename)s
+
+调用日志输出函数的模块的文件名
+
+%(module)s
+
+调用日志输出函数的模块名
+
+%(funcName)s
+
+调用日志输出函数的函数名
+
+%(lineno)d
+
+调用日志输出函数的语句所在的代码行
+
+%(created)f
+
+当前时间，用UNIX标准的表示时间的浮 点数表示
+
+%(relativeCreated)d
+
+输出日志信息时的，自Logger创建以 来的毫秒数
+
+%(asctime)s
+
+字符串形式的当前时间。默认格式是 “2003-07-08 16:49:45,896”。逗号后面的是毫秒
+
+%(thread)d
+
+线程ID。可能没有
+
+%(threadName)s
+
+线程名。可能没有
+
+%(process)d
+
+进程ID。可能没有
+
+%(message)s
+
+用户输出的消息

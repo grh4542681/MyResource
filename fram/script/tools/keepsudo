@@ -1,0 +1,279 @@
+#!/bin/bash
+
+export ShellDebug=1
+
+function _Debug() {
+	if [[ $ShellDebug = 1 ]]
+	then
+		echo $@
+	fi
+}
+
+if [ $# -lt 1 ]
+then
+	echo "Useage $0 [username]"
+	exit 1
+fi
+
+SudoersFile="./sudoers"
+
+OperaType=
+TargetType=
+TargetName=
+Status=0
+
+while getopts ":adDlu:g:" opt
+do
+	case $opt in
+		a)
+			if [ -z $OperaType ]
+            then
+                OperaType=$opt
+            else
+                echo "Option [$OperaType] has been set!"
+                exit 1
+            fi
+			;;
+		d)
+			if [ -z $OperaType ]
+            then
+                OperaType=$opt
+            else
+                echo "Option [$OperaType] has been set!"
+                exit 1
+            fi
+			;;
+		l)
+			if [ -z $OperaType ]
+            then
+                OperaType=$opt
+            else
+                echo "Option [$OperaType] has been set!"
+                exit 1
+            fi
+			;;
+		D)
+			if [ -z $OperaType ]
+            then
+                OperaType=$opt
+            else
+                echo "Option [$OperaType] has been set!"
+                exit 1
+            fi
+			;;
+		u)
+			if [ -z $TargetType ]
+            then
+                TargetType=$opt
+				grep "^$OPTARG:" /etc/passwd > /dev/null
+				if [ $? -ne 0 ]
+				then
+					echo "User [$OPTARG] not exists!"
+					exit 1
+				fi
+				TargetName=$OPTARG
+            else
+                echo "Option [$TargetType] has been set!"
+                exit 1
+            fi
+			;;
+		g)
+			if [ -z $TargetType ]
+            then
+                TargetType=$opt
+				grep "^$OPTARG:" /etc/group > /dev/null
+				if [ $? -ne 0 ]
+				then
+					echo "Group [$OPTARG] not exists!"
+					exit 1
+				fi
+				TargetName="%"$OPTARG
+            else
+                echo "Option [$TargetType] has been set!"
+                exit 1
+            fi
+			;;
+		h)  
+            printf "%s\n" "Useage: [-u|g username|groupname] [-h]"
+            printf "  %3s %-20s %s\n" "-u," "--user" "Users do not need to enter a password when using sudo"
+            printf "  %3s %-20s %s\n" "-g," "--group" "Users in group do not need to enter a password when using sudo"
+            printf "  %3s %-20s\n" "-h," "--help"
+            exit 0
+            ;;  
+        :)  
+            echo "No argument value for option [$OPTARG]"
+            exit 1
+            ;;  
+        ?)  
+            echo "Unknow option [$OPTARG]!"
+            exit 1
+    esac
+done
+
+if [ -z $OperaType ]
+then
+	echo "You must specify an action type!"
+	exit 9
+fi
+
+case $OperaType in
+	a)
+		if [ -z $TargetType ]
+		then
+			echo "You must specify a target type!"
+			exit 9
+		fi
+		LineNum=0
+		while read FileLine
+		do
+			
+			let LineNum=$LineNum+1
+		
+			if [ -z "$FileLine" ]
+			then
+				continue
+			fi
+		
+			if [[ "${FileLine:0:1}" = '#' ]]
+			then
+				continue
+			fi
+			
+			AlKeepName=`echo $FileLine | awk -F ' ' '{print $1}'`
+		
+			if [[ $AlKeepName = $TargetName ]]
+			then
+				echo $FileLine | grep "NOPASSWD" >> /dev/null
+				if [ $? -eq 0 ]
+				then
+					echo "The target [$TargetName] already has permissions"
+					Status=1
+					exit 0
+				else
+					sed -i "${LineNum}s/)/) NOPASSWD:/" $SudoersFile
+					echo "Grant no password permission succeeded!"
+					exit 0
+				fi
+			fi
+		done < $SudoersFile
+		echo "$TargetName	ALL=(ALL:ALL) NOPASSWD: ALL" >> $SudoersFile
+		echo "Grant no password permission succeeded!"
+		exit 0
+		;;
+	d)
+		if [ -z $TargetType ]
+		then
+			echo "You must specify a target type!"
+			exit 9
+		fi
+		LineNum=0
+		while read FileLine
+		do
+			
+			let LineNum=$LineNum+1
+		
+			if [ -z "$FileLine" ]
+			then
+				continue
+			fi
+		
+			if [[ "${FileLine:0:1}" = '#' ]]
+			then
+				continue
+			fi
+			
+			AlKeepName=`echo $FileLine | awk -F ' ' '{print $1}'`
+		#	echo $AlKeepName
+		
+			if [[ $AlKeepName = $TargetName ]]
+			then
+				echo $FileLine | grep "NOPASSWD" > /dev/null
+				if [ $? -eq 0 ]
+				then
+					sed -i "${LineNum}s/) NOPASSWD:/)/" $SudoersFile
+					echo "Revoke no password permission succeeded!"
+					exit 0
+				else
+					echo "Target [$TargetName] does not have NOPASSWD permissions"
+					exit 0
+				fi
+			fi
+		done < $SudoersFile
+		echo "Target [$TargetName] does not have SUDO permissions"
+		exit 0
+		;;
+	D)
+		if [ -z $TargetType ]
+		then
+			echo "You must specify a target type!"
+			exit 9
+		fi
+		LineNum=0
+		while read FileLine
+		do
+			let LineNum=$LineNum+1
+		
+			if [ -z "$FileLine" ]
+			then
+				continue
+			fi
+		
+			if [[ "${FileLine:0:1}" = '#' ]]
+			then
+				continue
+			fi
+			
+			AlKeepName=`echo $FileLine | awk -F ' ' '{print $1}'`
+		#	echo $AlKeepName
+		
+			if [[ $AlKeepName = $TargetName ]]
+			then
+				sed -i "${LineNum}d" $SudoersFile
+				echo "Revoke sudo permission succeeded!"
+				exit 0
+			fi
+		done < $SudoersFile
+		echo "Target [$TargetName] does not have SUDO permissions"
+		exit 0
+		;;
+	l)
+		while read FileLine
+		do
+			if [ -z "$FileLine" ]
+			then
+				continue
+			fi
+		
+			if [[ "${FileLine:0:1}" = '#' ]]
+			then
+				continue
+			fi
+			
+			AlKeepName=`echo $FileLine | awk -F ' ' '{print $1}'`
+			if [ ! -z $TargetName ]
+			then
+				if [[ $AlKeepName = $TargetName ]]
+				then
+					echo $FileLine | grep "NOPASSWD" > /dev/null
+					if [ $? -eq 0 ]
+					then
+						echo $AlKeepName
+						exit 0
+					else
+						echo "The target [$TargetName] not have permissions"
+						exit 0
+					fi
+				fi
+			else
+				echo $FileLine | grep "NOPASSWD" > /dev/null
+				if [ $? -eq 0 ]
+				then
+					echo $AlKeepName
+				fi
+			fi
+		done < $SudoersFile
+		exit 0
+		;;
+esac
+
+
