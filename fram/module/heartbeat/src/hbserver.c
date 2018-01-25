@@ -35,8 +35,13 @@ int main(int argc,char** argv)
 	memset(&mchinf,0x00,sizeof(MCHINF));
 	addrlen=sizeof(struct sockaddr_in);
 
-	shmid = ArrShmCreate(ftok(".",100),1024*1024,0666);
-	ArrShmFormat(shmid,sizeof(MCHINF));
+	ARRSHMATTR shmattr;
+   memset(&shmattr,0x00,sizeof(ARRSHMATTR));
+   shmattr.totalsize = 1024*1024;
+   shmattr.blocksize = sizeof(MCHINF); 
+   shmattr.shmkey=12345;
+   shmattr.semkey=12346;
+   ArrShmCreate(&shmattr);
 
 	epfd=epoll_create1(0);
 

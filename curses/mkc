@@ -1,1 +1,0 @@
-gcc -g showfile.c -lcurses -lpanel -lncurses -o c

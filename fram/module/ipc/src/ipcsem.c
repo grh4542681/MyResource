@@ -351,6 +351,9 @@ int vipc_sem_Wlocked(int semid,int maxtime)
 	time_t first;
 	time_t second;
 	double xtime;
+
+	memset(&first,0x00,sizeof(time_t));
+	
 	if(maxtime)
 	{
 		first=time(NULL);
@@ -425,6 +428,8 @@ int vipc_sem_Rlocked(int semid,int maxtime)
 	time_t first;
 	time_t second;
 	double xtime;
+
+	memset(&first,0x00,sizeof(time_t));
 
 	if(maxtime)
 	{

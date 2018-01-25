@@ -1,1 +1,0 @@
-gcc -w -O2 main.c procpool.c child_op.c log.c mem.c list.c io.c -o m

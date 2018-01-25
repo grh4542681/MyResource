@@ -1,78 +1,23 @@
-# zlog makefile
-# Copyright (C) 2010-2012 Hardy Simpson <HardySimpson1984@gmail.com>
-# This file is released under the LGPL 2.1 license, see the COPYING file
+# module makefile
+# Auth: Ronghua Gao
 
-PLATHOME=/home/helsinki/fram
-COMPONENT=heartbeat
-BINSPATH=$(PLATHOME)/bin
-LIBPATH=$(PLATHOME)/lib
-OBJPATH=$(PLATHOME)/module/$(COMPONENT)/obj
-INCPATH=$(PLATHOME)/module/$(COMPONENT)/inc
-PUBINCPATH=$(PLATHOME)/module/public/inc
+include $(PLATHOME)/common.mk
 
-OBJ=    \
-	packpkg.o	\
- 	hbserver.o	\
-	hbclient.o	\
-	hbcmd.o
+OBJ_PATH := $(shell pwd)/../obj
 
-BINS=hbserver hbclient hbcmd
+BINS := hbserver hbclient hbcmd
 
-MV=mv
-CP=cp
+hbserver_SRC := hbserver.c packpkg.c
+hbserver_LDLIBS := -llog -lpub -pthread -lipc -lJSON -lrt -lm
+hbserver_LDFLAGS :=
 
-# Fallback to gcc when $CC is not in $PATH.
-CC:=$(shell sh -c 'type $(CC) >/dev/null 2>/dev/null && echo $(CC) || echo gcc')
-OPTIMIZATION=-O2
-WARNINGS=-Wall -Werror -Wstrict-prototypes -fwrapv
-DEBUG= -g -ggdb
-REAL_CFLAGS= $(OPTIMIZATION) -fPIC -pthread $(CFLAGS) $(WARNINGS) $(DEBUG) -D_GNU_SOURCE
-REAL_LDFLAGS=$(LDFLAGS) -L$(LIBPATH) -lm -pthread -llog -lpub -lJSON -lTpool
-REAL_INCLUDE=-I$(INCPATH) -I$(PLATHOME)/module/log/inc -I$(PUBINCPATH) -I$(PLATHOME)/module/json/inc -I$(PLATHOME)/module/threadpool/inc
+hbclient_SRC := hbclient.c packpkg.c
+hbclient_LDLIBS := -llog -lpub -pthread -lipc -lJSON -lrt -lm
 
-all: $(OBJ) $(BINS)
-	$(MV) *.o $(OBJPATH)
+hbcmd_SRC := hbcmd.c
+hbcmd_LDLIBS := -llog -lipc -lpub -pthread -lrt
 
-# Binaries:
-hbserver: hbserver.o 
-	$(CC) -o $@ $(REAL_INCLUDE) hbserver.o packpkg.o $(REAL_LDFLAGS)
-#	$(MV) hbserver $(BINSPATH)
+LIBS := 
+libpub_SRC := 
 
-hbclient: hbclient.o
-	$(CC) -o $@ $(REAL_INCLUDE) hbclient.o packpkg.o $(REAL_LDFLAGS)
-
-hbcmd: hbcmd.o
-	$(CC) -o $@ $(REAL_INCLUDE) hbcmd.o $(REAL_LDFLAGS)
-
-.c.o:
-	$(CC) -std=c99 -pedantic -c $(REAL_INCLUDE) $(REAL_CFLAGS) $<
-
-clean:
-	rm -rf $(DYLIBNAME) $(STLIBNAME) $(BINS) *.o 
-
-dep:
-	$(CC) -MM *.c
-
-32bit:
-	@echo ""
-	@echo "WARNING: if this fails under Linux you probably need to install libc6-dev-i386"
-	@echo ""
-	$(MAKE) CFLAGS="-m32" LDFLAGS="-m32"
-
-gprof:
-	$(MAKE) CFLAGS="-pg" LDFLAGS="-pg"
-
-gcov:
-	$(MAKE) CFLAGS="-fprofile-arcs -ftest-coverage" LDFLAGS="-fprofile-arcs"
-
-coverage: gcov
-	make check
-	mkdir -p tmp/lcov
-	lcov -d . -c -o tmp/lcov/hiredis.info
-	genhtml --legend -o tmp/lcov/report tmp/lcov/hiredis.info
-
-noopt:
-	$(MAKE) OPTIMIZATION=""
-
-
-.PHONY: all clean dep 32bit gprof gcov noopt
+include $(PLATHOME)/super.mk

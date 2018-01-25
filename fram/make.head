@@ -3,7 +3,7 @@
 # This file is released under the LGPL 2.1 license, see the COPYING file
 
 PLATHOME=/home/helsinki/fram
-BINSPATH=$(PLATHOME)/bin
+BINPATH=$(PLATHOME)/bin
 LIBPATH=$(PLATHOME)/lib
 PUBINCPATH=$(PLATHOME)/module/public/inc
 
