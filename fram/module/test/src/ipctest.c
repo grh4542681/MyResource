@@ -5,7 +5,7 @@
 
 int main(int argv,char** args)
 {
-	LOGINIT("/home/helsinki/fram/etc/log.conf");
+	LOGINIT("/home/ezgaoro/grh/MyResource/fram/etc/log.conf");
 
 	ARRSHMATTR shmattr;
 	memset(&shmattr,0x00,sizeof(ARRSHMATTR));

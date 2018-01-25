@@ -14,7 +14,7 @@
 int main(int argc,char** argv)
 {
 
-	LOGINIT("/home/helsinki/fram/etc/log.conf");
+	LOGINIT("/home/ezgaoro/grh/MyResource/fram/etc/log.conf");
 
 	int ret;
 	int shmid;
@@ -45,7 +45,7 @@ int main(int argc,char** argv)
 
 	epfd=epoll_create1(0);
 
-	sockfd = InitTCPSocket("10.190.166.141","9494");
+	sockfd = InitTCPSocket("132.196.28.87","9494");
 	
 	iev.data.fd = sockfd;
 	iev.events = EPOLLIN|EPOLLET;

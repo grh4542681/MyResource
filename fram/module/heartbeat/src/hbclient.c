@@ -9,7 +9,7 @@
 
 int main(int argc,char** argv)
 {
-	LOGINIT("/home/helsinki/fram/etc/log.conf");
+	LOGINIT("/home/ezgaoro/grh/MyResource/fram/etc/log.conf");
 	int ret;
 	int sockfd;
 	MCHINF hostinfo;
@@ -19,7 +19,7 @@ int main(int argc,char** argv)
 	
 	char* pkg=PackHBpkg4J(&hostinfo);
 
-	sockfd = ConnTCPSocket("10.190.166.141","9494");
+	sockfd = ConnTCPSocket("132.196.28.87","9494");
 	while(1)
 	{
 		//ret=SendSocketWait(sockfd,"hello world",11);

@@ -3,9 +3,9 @@
 
 int main(int args,char** argv)
 {
-	LOGINIT("/home/helsinki/fram/etc/log.conf");
+	LOGINIT("/home/ezgaoro/grh/MyResource/fram/etc/log.conf");
 
-	INISEC* ini= LoadINI("/home/helsinki/fram/etc/1.ini");
+	INISEC* ini= LoadINI("/home/ezgaoro/grh/MyResource/fram/etc/1.ini");
 	INIITEM* item=GetSectionItem(ini,"STEP1","DESCRIPT");
 	if(!item)
 	{
