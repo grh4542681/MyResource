@@ -1,7 +1,6 @@
 # module makefile
 # Auth: Ronghua Gao
 
-include $(PLATHOME)/common.mk
 
 OBJ_PATH := $(shell pwd)/../obj
 
