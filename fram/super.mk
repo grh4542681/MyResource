@@ -64,7 +64,7 @@ $(1)_BIN_SRC := $($(1)_SRC:.c=.o)
 
 $(1): $$($(1)_BIN_SRC)
 	$(CC) -o $$@ $$($(1)_REAL_CFLAGS) $$($(1)_BIN_SRC) $$($(1)_REAL_LDFLAGS) $$($(1)_REAL_LDLIBS) 
-	$(MV) $$@ $$(BIN_PATH)
+#	$(MV) $$@ $$(BIN_PATH)
 endef
 
 $(foreach lib,$(LIBS),$(eval $(call build_so,$(lib))))

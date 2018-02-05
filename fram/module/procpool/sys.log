@@ -229,3 +229,178 @@
 |
 60384|08-14 10:54:08:380766|  51|main.c   |poolinfo.freechildnum[3]
 |
+95989|01-26 08:50:49:846352| 406|child_monitor_main.c||
+95989|01-26 08:50:49:852438| 342|child_monitor_main.c|Poolmanager pid[95989] create child[95990]
+|
+95990|01-26 08:50:49:852470| 333|child_monitor_main.c|child [95990] create father [95989]|
+95990|01-26 08:50:49:854234|  12|child_main.c|child[95990] create|
+95989|01-26 08:50:49:855018| 354|child_monitor_main.c|child [95990] register|
+95989|01-26 08:50:49:855727| 356|child_monitor_main.c|Poolmanager pid[95989] create child[95990] success
+|
+95989|01-26 08:50:49:856435| 342|child_monitor_main.c|Poolmanager pid[95989] create child[95991]
+|
+95991|01-26 08:50:49:856466| 333|child_monitor_main.c|child [95991] create father [95989]|
+95991|01-26 08:50:49:859073|  12|child_main.c|child[95991] create|
+95989|01-26 08:50:49:859778| 354|child_monitor_main.c|child [95991] register|
+95989|01-26 08:50:49:860818| 356|child_monitor_main.c|Poolmanager pid[95989] create child[95991] success
+|
+95989|01-26 08:50:49:861543| 342|child_monitor_main.c|Poolmanager pid[95989] create child[95992]
+|
+95992|01-26 08:50:49:861571| 333|child_monitor_main.c|child [95992] create father [95989]|
+95992|01-26 08:50:49:863839|  12|child_main.c|child[95992] create|
+95989|01-26 08:50:49:864645| 354|child_monitor_main.c|child [95992] register|
+95989|01-26 08:50:49:865584| 356|child_monitor_main.c|Poolmanager pid[95989] create child[95992] success
+|
+95988|01-26 08:50:49:866308|  96|procpool.c|manager send is [2]|
+95988|01-26 08:50:49:867632| 102|procpool.c|Procpool Create Success poolmanager pid[95989]
+|
+95989|01-26 08:50:59:866431| 342|child_monitor_main.c|Poolmanager pid[95989] create child[98323]
+|
+98323|01-26 08:50:59:866482| 333|child_monitor_main.c|child [98323] create father [95989]|
+98323|01-26 08:50:59:869395|  12|child_main.c|child[98323] create|
+95989|01-26 08:50:59:870162| 354|child_monitor_main.c|child [98323] register|
+95989|01-26 08:50:59:870819| 356|child_monitor_main.c|Poolmanager pid[95989] create child[98323] success
+|
+95989|01-26 08:50:59:872303| 342|child_monitor_main.c|Poolmanager pid[95989] create child[98326]
+|
+98326|01-26 08:50:59:872333| 333|child_monitor_main.c|child [98326] create father [95989]|
+98326|01-26 08:50:59:874401|  12|child_main.c|child[98326] create|
+95989|01-26 08:50:59:875059| 354|child_monitor_main.c|child [98326] register|
+95989|01-26 08:50:59:875662| 356|child_monitor_main.c|Poolmanager pid[95989] create child[98326] success
+|
+95988|01-26 08:50:59:876549|  17|main.c   |ret=[192]
+|
+95988|01-26 08:50:59:877280|  19|main.c   |poolinfo.idel[100.000000]
+|
+95988|01-26 08:50:59:878306|  21|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:50:59:878900|  23|main.c   |poolinfo.freechildnum[5]
+|
+95988|01-26 08:51:01:879688|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:01:881011|  47|main.c   |poolinfo.idel[100.000000]
+|
+95988|01-26 08:51:01:881656|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:01:883124|  51|main.c   |poolinfo.freechildnum[2]
+|
+95988|01-26 08:51:03:883838|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:03:885152|  47|main.c   |poolinfo.idel[100.000000]
+|
+95988|01-26 08:51:03:885797|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:03:886376|  51|main.c   |poolinfo.freechildnum[0]
+|
+95988|01-26 08:51:05:887812|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:05:889382|  47|main.c   |poolinfo.idel[100.000000]
+|
+95988|01-26 08:51:05:890034|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:05:890862|  51|main.c   |poolinfo.freechildnum[3]
+|
+95988|01-26 08:51:07:892242|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:07:893615|  47|main.c   |poolinfo.idel[100.000000]
+|
+95988|01-26 08:51:07:894206|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:07:894944|  51|main.c   |poolinfo.freechildnum[5]
+|
+95988|01-26 08:51:09:895579|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:09:896155|  47|main.c   |poolinfo.idel[40.000000]
+|
+95988|01-26 08:51:09:897067|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:09:897614|  51|main.c   |poolinfo.freechildnum[2]
+|
+95988|01-26 08:51:11:898243|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:11:899332|  47|main.c   |poolinfo.idel[40.000000]
+|
+95988|01-26 08:51:11:900309|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:11:901130|  51|main.c   |poolinfo.freechildnum[0]
+|
+95988|01-26 08:51:13:902014|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:13:903024|  47|main.c   |poolinfo.idel[40.000000]
+|
+95988|01-26 08:51:13:904416|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:13:905090|  51|main.c   |poolinfo.freechildnum[3]
+|
+95988|01-26 08:51:15:905969|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:15:907294|  47|main.c   |poolinfo.idel[40.000000]
+|
+95988|01-26 08:51:15:907946|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:15:909458|  51|main.c   |poolinfo.freechildnum[5]
+|
+95988|01-26 08:51:17:911110|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:17:912113|  47|main.c   |poolinfo.idel[40.000000]
+|
+95988|01-26 08:51:17:912935|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:17:913474|  51|main.c   |poolinfo.freechildnum[2]
+|
+95988|01-26 08:51:19:914119|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:19:915373|  47|main.c   |poolinfo.idel[0.000000]
+|
+95988|01-26 08:51:19:916021|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:19:916552|  51|main.c   |poolinfo.freechildnum[0]
+|
+95988|01-26 08:51:21:917209|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:21:918106|  47|main.c   |poolinfo.idel[0.000000]
+|
+95988|01-26 08:51:21:919605|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:21:921168|  51|main.c   |poolinfo.freechildnum[3]
+|
+95988|01-26 08:51:23:922236|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:23:923456|  47|main.c   |poolinfo.idel[0.000000]
+|
+95988|01-26 08:51:23:924780|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:23:925529|  51|main.c   |poolinfo.freechildnum[5]
+|
+95988|01-26 08:51:25:926829|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:25:928668|  47|main.c   |poolinfo.idel[0.000000]
+|
+95988|01-26 08:51:25:929526|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:25:930048|  51|main.c   |poolinfo.freechildnum[2]
+|
+95988|01-26 08:51:27:930822|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:27:931879|  47|main.c   |poolinfo.idel[0.000000]
+|
+95988|01-26 08:51:27:932938|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:27:933498|  51|main.c   |poolinfo.freechildnum[0]
+|
+95988|01-26 08:51:29:934154|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:29:934990|  47|main.c   |poolinfo.idel[60.000004]
+|
+95988|01-26 08:51:29:935649|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:29:936241|  51|main.c   |poolinfo.freechildnum[3]
+|
+95988|01-26 08:51:31:937837|  45|main.c   |ret=[192]
+|
+95988|01-26 08:51:31:939837|  47|main.c   |poolinfo.idel[60.000004]
+|
+95988|01-26 08:51:31:940701|  49|main.c   |poolinfo.childnum[5]
+|
+95988|01-26 08:51:31:942114|  51|main.c   |poolinfo.freechildnum[5]
+|
