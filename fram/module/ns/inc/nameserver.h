@@ -2,16 +2,9 @@
 #define __NAMESERVER_H__
 
 
-typedef struct ns_cli_endpoint_t
-{
+class Nameserver {
 
 }
-
-typedef struct ns_dns_endpoint_t
-{
-
-}
-
 
 
 
