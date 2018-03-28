@@ -22,7 +22,7 @@ CommException::~CommException() throw()
 
 const char* CommException::what()
 {
-    return (this->message).c_str();
+    return ((this->message).c_str());
 }
 
 }
