@@ -1,4 +1,4 @@
-SUBDIRS=$(PLATTOP)/public
+SUBDIRS=$(PLATTOP)/public/src
 
 .PHONY: all
 all:
