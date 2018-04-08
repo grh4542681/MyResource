@@ -1,17 +1,17 @@
-#ifndef __COMM_EXECPTION_H__
-#define __COMM_EXECPTION_H__
+#ifndef __BASE_EXECPTION_H__
+#define __BASE_EXECPTION_H__
 
 #include <exception>
 #include <string>
 
 namespace Global{
 
-class CommException : public std::exception
+class BaseException : public std::exception
 {
 public:
-    CommException(int);
-    CommException(std::exception&);
-    ~CommException() throw();
+    BaseException(int);
+    BaseException(std::exception&);
+    ~BaseException() throw();
     const char* what();
 
     static const char* what(int);

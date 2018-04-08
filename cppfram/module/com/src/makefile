@@ -7,8 +7,8 @@ BINS :=
 $(BINS)_SRC :=
 $(BINS)_LDLIBS :=
 
-LIBS := libpub 
-libpub_SRC := base_exception.cc
+LIBS := libcom
+libcom_SRC := com_exception.cc com_base_socket.cc
 
 CFLAGS :=
 CXXFLAGS :=
