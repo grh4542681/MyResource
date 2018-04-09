@@ -1,8 +1,9 @@
-#ifndef __COM_BASE_SOCKET__
-#define __COM_BASE_SOCKET__
+#ifndef __COM_BASE_SOCKET_H__
+#define __COM_BASE_SOCKET_H__
 
 #include <string>
 #include <map>
+#include <memory>
 
 #include <communication.h>
 #include <com_exception.h>
@@ -15,12 +16,10 @@ namespace COM{
 #define TCP 1
 #define UDP 2
 
-using namespace std;
-
 typedef struct _sock_info{
     int mode;
     int protocol;
-    string addr;
+    std::string addr;
     short port;
 }SockInfo;
 
@@ -33,20 +32,19 @@ typedef struct _sock_opt{
 class ComBaseSockArgs{
 private:
     SockInfo info;
-    map<int, SockOpt> opt;
+    std::map<int, SockOpt> opt;
 
 public:
-    ComBaseSockArgs();
-    ComBaseSockArgs(SockInfo*, map<int, SockOpt>*);
+    ComBaseSockArgs(SockInfo*);
     ~ComBaseSockArgs();
 
-    void add_opt(SockOpt*);
+    void add_opt(int, int, const void*);
     void del_opt(SockOpt*);
 };
 
 class ComBaseSocket : public BaseCommunication{
 private:
-    ComBaseSockArgs sockargs;
+    share_ptr<ComBaseSockArgs> sp_sockargs;
 
 public:
     ComBaseSocket();

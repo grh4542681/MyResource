@@ -2,3 +2,7 @@
 .cproject
 .project
 *.swp
+/gcc-4.8.5/
+/gmp-6.1.0/
+/mpfr-3.1.4/
+/mpc-1.0.3/

@@ -30,7 +30,7 @@ all:
 	$(CC) -std=c99 -pedantic -c $(COMM_CFLAGS) $(CFLAGS) $<
 
 %.o:%.cc
-	$(CXX) -std=c++0x -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
+	$(CXX) -std=c++11 -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
 
 %.o:%.pp
 	$(CXX) -std=c++0x -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
