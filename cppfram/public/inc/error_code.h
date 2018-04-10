@@ -8,13 +8,18 @@
 
 namespace Global{
 
+//PUB error
 #define DEFAULT_ERROR    ("PUB_99999")
 #define UNKNOW_ERROR    ("PUB_99998")
 
+//COM error
+#define COM_BAD_ARGS    ("COM_10000");
 
 std::map<std::string, std::string> exception_code = {
     { "PUB_99999", "Default error message" },
-    { "PUB_99998", "Unknow error message" }
+    { "PUB_99998", "Unknow error message" },
+
+    { "COM_10000", "Bad arguments" }
 };
 
 inline const char* exception_message(std::string errcode)
@@ -22,9 +27,9 @@ inline const char* exception_message(std::string errcode)
     std::map<std::string, std::string>::iterator it;
     it = exception_code.find(errcode);
     if (it != exception_code.end()) {
-        return it->second.c_str();
+        return (it->second.c_str());
     }
-    return NULL;
+    return (NULL);
 }
 
 }

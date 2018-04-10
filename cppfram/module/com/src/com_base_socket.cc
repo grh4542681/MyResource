@@ -18,19 +18,21 @@ ComBaseSockArgs::~ComBaseSockArgs(){
 }
 
 void ComBaseSockArgs::add_opt(int optname, int level, const void *optval,unsigned int optvallen) throw(ComException){
+    if (!optval) {
+        throw ComException(COM_BAD_ARGS);
+    }
     SockOpt new_optval;
     new_optval.optname = optname;
     new_optval.level = level;
     new_optval.optval = NULL;
-    if (optval) {
-        try{
-            new_optval.optval = new char[optvallen];
-        } catch (std::exception& e) {
-            throw ComException(e);
-        }
-        memset(const_cast<void*>(new_optval.optval), 0x00, optvallen);
-        memcpy(const_cast<void*>(new_optval.optval), optval, optvallen);
+
+    try{
+        new_optval.optval = new char[optvallen];
+    } catch (std::exception& e) {
+        throw ComException(e);
     }
+    memset(const_cast<void*>(new_optval.optval), 0x00, optvallen);
+    memcpy(const_cast<void*>(new_optval.optval), optval, optvallen);
 
     std::map<int, SockOpt>::iterator it = this->opt.find(optname);
     if (it != this->opt.end()) {
