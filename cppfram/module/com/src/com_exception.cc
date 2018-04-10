@@ -2,7 +2,7 @@
 
 namespace COM{
 
-ComException::ComException(int code):Global::BaseException(code){
+ComException::ComException(std::string errmark):Global::BaseException(errmark){
 
 }
 

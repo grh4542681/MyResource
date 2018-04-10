@@ -38,13 +38,13 @@ public:
     ComBaseSockArgs(SockInfo*);
     ~ComBaseSockArgs();
 
-    void add_opt(int, int, const void*);
-    void del_opt(SockOpt*);
+    void add_opt(int, int, const void*, unsigned int) throw(ComException);
+    void del_opt(SockOpt*) throw(ComException);
 };
 
 class ComBaseSocket : public BaseCommunication{
 private:
-    share_ptr<ComBaseSockArgs> sp_sockargs;
+    std::shared_ptr<ComBaseSockArgs> sp_sockargs;
 
 public:
     ComBaseSocket();

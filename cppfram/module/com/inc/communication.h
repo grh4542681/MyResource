@@ -7,12 +7,12 @@ namespace COM{
 
 class BaseCommunication{
 public:
-    BaseCommunication();
-    ~BaseCommunication();
-    virtual void open() throw(ComException);
-    virtual void close() throw(ComException);
-    virtual void write() throw(ComException);
-    virtual void read() throw(ComException);
+    BaseCommunication(){};
+    ~BaseCommunication(){};
+    virtual void open() throw(ComException){};
+    virtual void close() throw(ComException){};
+    virtual void write() throw(ComException){};
+    virtual void read() throw(ComException){};
 };
 
 }

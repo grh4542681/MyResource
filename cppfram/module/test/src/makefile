@@ -6,8 +6,8 @@ OBJ_PATH := $(shell pwd)/../obj
 
 BINS := com_test
 
-com_SRC := comtest.cc
-com_LDLIBS := -llog -lpub -lcom -pthread -lrt
+com_test_SRC := comtest.cc
+com_test_LDLIBS := -llog -lpub -lcom -pthread -lrt
 
 LIBS := 
 libpub_SRC := 

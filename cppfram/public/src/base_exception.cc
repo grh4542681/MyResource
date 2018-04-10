@@ -3,15 +3,15 @@
 
 namespace Global {
 
-BaseException::BaseException(int code):std::exception()
+BaseException::BaseException(std::string errcode):std::exception()
 {
-    this->code = code;
-    this->message = exception_message(code);   
+    this->errcode = errcode;
+    this->message = exception_message(errcode);   
 }
 
 BaseException::BaseException(std::exception& e):std::exception(e)
 {
-    this->code = DEFAULT_ERROR;
+    this->errcode = DEFAULT_ERROR;
     this->message = e.what();
 }
 

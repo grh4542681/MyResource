@@ -13,6 +13,7 @@ RM?=rm
 
 #Compile parameter settings
 CC=gcc
+#CXX=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/g++
 CXX=g++
 AR=ar
 OPTIMIZATION=-O2
@@ -30,7 +31,7 @@ all:
 	$(CC) -std=c99 -pedantic -c $(COMM_CFLAGS) $(CFLAGS) $<
 
 %.o:%.cc
-	$(CXX) -std=c++11 -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
+	$(CXX) -std=c++0x -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
 
 %.o:%.pp
 	$(CXX) -std=c++0x -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<

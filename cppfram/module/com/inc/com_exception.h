@@ -8,7 +8,7 @@ namespace COM{
 
 class ComException : public Global::BaseException{
 public:
-    ComException(int);
+    ComException(std::string);
     ComException(std::exception&);
     ~ComException() throw();
 };
