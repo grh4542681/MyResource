@@ -2,6 +2,9 @@
 #define __COM_EXCEPTION_H__
 
 #include <exception>
+#include <string>
+#include <map>
+
 #include <base_exception.h>
 
 namespace COM{
@@ -12,6 +15,8 @@ public:
     ComException(std::exception&);
     ~ComException() throw();
 };
+
+extern std::map<std::string, std::string> ComErrCode;
 
 }
 

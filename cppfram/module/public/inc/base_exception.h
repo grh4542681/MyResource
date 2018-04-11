@@ -6,17 +6,16 @@
 
 namespace Global{
 
+
 class BaseException : public std::exception
 {
 public:
     BaseException(std::string);
     BaseException(std::exception&);
+    const char* what() const throw();
     ~BaseException() throw();
-    const char* what();
 
-    static const char* what(int);
 private:
-    std::string errcode;
     std::string message;
 };
 

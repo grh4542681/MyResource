@@ -1,17 +1,14 @@
 #include <base_exception.h>
-#include <error_code.h>
 
 namespace Global {
 
-BaseException::BaseException(std::string errcode):std::exception()
+BaseException::BaseException(std::string message):std::exception()
 {
-    this->errcode = errcode;
-    this->message = exception_message(errcode);   
+    this->message = message;
 }
 
 BaseException::BaseException(std::exception& e):std::exception(e)
 {
-    this->errcode = DEFAULT_ERROR;
     this->message = e.what();
 }
 
@@ -20,7 +17,7 @@ BaseException::~BaseException() throw()
 
 }
 
-const char* BaseException::what()
+const char* BaseException::what() const throw()
 {
     return ((this->message).c_str());
 }

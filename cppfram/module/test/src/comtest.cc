@@ -1,6 +1,9 @@
 #include <com_base_socket.h>
 #include <iostream>
+#include <exception>
+#include <com_exception.h>
 #include <string>
+#include <base_exception.h>
 
 #include <com_log.h>
 using namespace std;
@@ -18,7 +21,11 @@ int main(){
 
     int a = 3;
     sockargs.add_opt(1,1,&a,sizeof(a));
-    sockargs.del_opt(NULL);
+    try{
+        sockargs.del_opt(NULL);
+    } catch (Global::BaseException& e) {
+        cout<<e.what()<<endl;
+    }
     a=5;
     sockargs.add_opt(1,10,&a,sizeof(a));
     sockargs.del_opt(NULL);

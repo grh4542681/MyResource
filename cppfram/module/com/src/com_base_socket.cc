@@ -19,7 +19,7 @@ ComBaseSockArgs::~ComBaseSockArgs(){
 
 void ComBaseSockArgs::add_opt(int optname, int level, const void *optval,unsigned int optvallen) throw(ComException){
     if (!optval) {
-        throw ComException(COM_BAD_ARGS);
+        throw ComException(ComErrCode["BAD_ARGS"]);
     }
     SockOpt new_optval;
     new_optval.optname = optname;
@@ -44,12 +44,13 @@ void ComBaseSockArgs::add_opt(int optname, int level, const void *optval,unsigne
     }
 }
 
-void ComBaseSockArgs::del_opt(SockOpt* opt){
+void ComBaseSockArgs::del_opt(SockOpt* opt) throw(ComException){
     std::map<int, SockOpt>::iterator it = this->opt.begin();
     while(it != this->opt.end()){
         std::cout<<it->second.optname<<"   "<<it->second.level<<std::endl;
         it++;
     }
+        throw ComException(ComErrCode["BAD_ARGS"]);
 }
 
 /*ComBaseSocket*/
