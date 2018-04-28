@@ -9,7 +9,7 @@
 using namespace std;
 int main(){
 
-    cout<<"------------------------------"<<endl;
+    cout<<"------------------------------"<<__cplusplus<<endl;
     LOGINIT((char*)(std::string("/home/ezgaoro/grh/MyResource/cppfram/etc/log.conf").c_str()));
     COM::SockInfo sockinfo;
     sockinfo.mode = CLIENT;
@@ -28,7 +28,11 @@ int main(){
     }
     a=5;
     sockargs.add_opt(1,10,&a,sizeof(a));
-    sockargs.del_opt(NULL);
+    try{
+        sockargs.del_opt(NULL);
+    } catch (exception& e) {
+        cout<<e.what()<<endl;
+    }
 
 
     LOGFREE();
