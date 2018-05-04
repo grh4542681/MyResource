@@ -9,10 +9,22 @@
 
 namespace COM{
 
+enum ComErrMark{
+    BAD_ARGS = 1,
+    UNKNOW_OPTNAME,
+    UNKNOW_RUNMODE,
+    UNKNOW_PROTOCOL,
+    SOCK_INI_ERR,
+    BIND_INI_ERR,
+    LISTEN_INI_ERR
+};
+
 class ComException : public Global::BaseException{
 public:
     ComException(std::string);
     ComException(std::exception&);
+    ComException(std::string, int);
+
     ~ComException() throw();
 };
 

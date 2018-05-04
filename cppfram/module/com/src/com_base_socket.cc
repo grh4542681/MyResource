@@ -1,10 +1,19 @@
 #include <string.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/select.h>
+#include <fcntl.h>
 
 #include <com_log.h>
 #include <com_base_socket.h>
 #include <com_exception.h>
 
 #include <iostream>
+
+#define COM_MAX_LINK (100)
 
 namespace COM{
 
@@ -86,18 +95,46 @@ ComBaseSocket::~ComBaseSocket(){
 }
 
 void ComBaseSocket::_open_s(){
-   switch(this->sp_sockargs->info.protocol) {
-    case COM::PROTOCOL::TCP:
-        break;
-    case COM::PROTOCOL::UDP:
-        break;
-    default:
-        throw ComException(ComErrCode["UNKNOW_PROTOCOL"]);
-   }
+    int ret = 0;
+
+    struct sockaddr_in addr;
+    memset(&addr, 0x00, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(this->sp_sockargs->info.port);
+    addr.sin_addr.s_addr = inet_addr((this->sp_sockargs->info.addr).c_str());
+
+    switch(this->sp_sockargs->info.protocol) {
+        case COM::PROTOCOL::TCP:
+            this->sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+            if (this->sock_fd < 0) {
+                throw ComException(ComErrCode["SOCK_INI_ERR"], ComErrMark::SOCK_INI_ERR);
+            }
+            ret = bind(this->sock_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in));
+            if (ret < 0) {
+                throw ComException(ComErrCode["BIND_INI_ERR"], ComErrMark::BIND_INI_ERR);
+            }
+            ret = listen(this->sock_fd, COM_MAX_LINK);
+            if (ret < 0) {
+                throw ComException(ComErrCode["LISTEN_INI_ERR"], ComErrMark::LISTEN_INI_ERR);
+            }
+            this->status = STATUS::S_READY;
+            break;
+        case COM::PROTOCOL::UDP:
+            break;
+        default:
+            throw ComException(ComErrCode["UNKNOW_PROTOCOL"], ComErrMark::UNKNOW_PROTOCOL);
+    }
 }
 
 void ComBaseSocket::_open_c(){
-
+    switch(this->sp_sockargs->info.protocol) {
+        case COM::PROTOCOL::TCP:
+            break;
+        case COM::PROTOCOL::UDP:
+            break;
+        default:
+            throw ComException(ComErrCode["UNKNOW_PROTOCOL"], ComErrMark::UNKNOW_PROTOCOL);
+    }
 }
 
 void ComBaseSocket::open() throw(ComException){
@@ -109,7 +146,7 @@ void ComBaseSocket::open() throw(ComException){
             this->_open_c();
             break;
         default:
-            throw ComException(ComErrCode["UNKNOW_RUNMODE"]);
+            throw ComException(ComErrCode["UNKNOW_RUNMODE"], ComErrMark::UNKNOW_RUNMODE);
     }
 }
 

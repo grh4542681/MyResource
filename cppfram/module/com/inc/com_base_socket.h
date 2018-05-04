@@ -20,6 +20,11 @@ enum class PROTOCOL:unsigned int{
     UDP
 };
 
+enum class STATUS:unsigned int{
+    S_READY = 1,
+    C_READY,
+};
+
 typedef struct _sock_info{
     MODE mode;
     PROTOCOL protocol;
@@ -48,6 +53,9 @@ public:
 
 class ComBaseSocket : public BaseCommunication{
 private:
+    int sock_fd;
+    STATUS status;
+
     void _open_s();
     void _open_c();
 public:
