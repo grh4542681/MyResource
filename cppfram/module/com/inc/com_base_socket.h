@@ -10,15 +10,19 @@
 
 namespace COM{
 
-#define SERVER 1
-#define CLIENT 2
+enum class MODE:unsigned int{
+    SERVER = 1,
+    CLIENT
+};
 
-#define TCP 1
-#define UDP 2
+enum class PROTOCOL:unsigned int{
+    TCP = 1,
+    UDP
+};
 
 typedef struct _sock_info{
-    int mode;
-    int protocol;
+    MODE mode;
+    PROTOCOL protocol;
     std::string addr;
     short port;
 }SockInfo;
@@ -30,25 +34,26 @@ typedef struct _sock_opt{
 }SockOpt;
 
 class ComBaseSockArgs{
-private:
+public:
     SockInfo info;
     std::map<int, SockOpt> opt;
 
-public:
     ComBaseSockArgs(SockInfo*);
     ~ComBaseSockArgs();
 
     void add_opt(int, int, const void*, unsigned int) throw(ComException);
-    void del_opt(SockOpt*) throw(ComException);
+    void del_opt(int) throw(ComException);
+    void print_opt(void) noexcept;
 };
 
 class ComBaseSocket : public BaseCommunication{
 private:
-    std::shared_ptr<ComBaseSockArgs> sp_sockargs;
-
+    void _open_s();
+    void _open_c();
 public:
+    std::shared_ptr<ComBaseSockArgs> sp_sockargs;
     ComBaseSocket();
-    ComBaseSocket(ComBaseSockArgs*);
+    ComBaseSocket(SockInfo*);
     ~ComBaseSocket();
 
     void open() throw(ComException);

@@ -12,28 +12,25 @@ int main(){
     cout<<"------------------------------"<<__cplusplus<<endl;
     LOGINIT((char*)(std::string("/home/ezgaoro/grh/MyResource/cppfram/etc/log.conf").c_str()));
     COM::SockInfo sockinfo;
-    sockinfo.mode = CLIENT;
-    sockinfo.protocol = TCP;
+    sockinfo.mode = COM::MODE::CLIENT;
+    sockinfo.protocol = COM::PROTOCOL::TCP;
     sockinfo.addr = "127.0.0.1";
     sockinfo.port = 8888;
 
-    COM::ComBaseSockArgs sockargs(&sockinfo);
+    COM::ComBaseSocket sockargs(&sockinfo);
 
     int a = 3;
-    sockargs.add_opt(1,1,&a,sizeof(a));
-    try{
-        sockargs.del_opt(NULL);
-    } catch (Global::BaseException& e) {
-        cout<<e.what()<<endl;
-    }
+    sockargs.sp_sockargs->add_opt(1,1,&a,sizeof(a));
+    sockargs.sp_sockargs->print_opt();
     a=5;
-    sockargs.add_opt(1,10,&a,sizeof(a));
+    sockargs.sp_sockargs->add_opt(1,10,&a,sizeof(a));
+    sockargs.sp_sockargs->print_opt();
     try{
-        sockargs.del_opt(NULL);
-    } catch (exception& e) {
+        sockargs.sp_sockargs->del_opt(2);
+    } catch(Global::BaseException& e) {
         cout<<e.what()<<endl;
+        cout<<e.trace()<<endl;
     }
-
 
     LOGFREE();
 

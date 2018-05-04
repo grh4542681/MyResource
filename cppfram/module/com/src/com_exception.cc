@@ -2,7 +2,10 @@
 
 namespace COM{
 std::map<std::string, std::string> ComErrCode = { 
-    { "BAD_ARGS", "Bad arguments" }
+    { "BAD_ARGS", "Bad arguments" },
+    { "UNKNOW_OPTNAME", "Unknow optname" },
+    { "UNKNOW_RUNMODE", "Unknow run mode" },
+    { "UNKNOW_PROTOCOL", "Unknow procotol" },
 };
 
 ComException::ComException(std::string errmark):Global::BaseException(errmark){

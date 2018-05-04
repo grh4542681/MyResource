@@ -12,9 +12,12 @@ CP?=cp
 RM?=rm
 
 #Compile parameter settings
-CC=gcc
-#CXX=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/g++
-CXX=g++
+CC=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/gcc
+#CC=gcc
+CXX=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/g++
+#CXX=g++
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ezgaoro/grh/MyResource/gmp-6.1.0/lib:/home/ezgaoro/grh/MyResource/mpfr-3.1.4/lib://home/ezgaoro/grh/MyResource/mpc-1.0.3/lib
+
 AR=ar
 OPTIMIZATION=-O2
 WARNINGS=-Wall 
@@ -23,7 +26,7 @@ DEBUG= -g -ggdb
 COMM_INCLUDES := $(foreach INC,$(shell find $(PLATTOP) -type d -name inc),-I$(INC))
 COMM_CFLAGS := -fPIC $(OPTIMIZATION)  $(WARNINGS) $(DEBUG) -D_GNU_SOURCE $(COMM_INCLUDES)
 COMM_CXXFLAGS := -fPIC $(OPTIMIZATION)  $(WARNINGS) $(DEBUG) -D_GNU_SOURCE $(COMM_INCLUDES)
-COMM_LDFLAGS := -L$(LIB_PATH) 
+COMM_LDFLAGS := -L$(LIB_PATH)
 COMM_LDLIBS := 
 
 all:
@@ -31,10 +34,10 @@ all:
 	$(CC) -std=c99 -pedantic -c $(COMM_CFLAGS) $(CFLAGS) $<
 
 %.o:%.cc
-	$(CXX) -std=c++0x -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
+	$(CXX) -std=c++11 -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
 
-%.o:%.pp
-	$(CXX) -std=c++0x -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
+%.o:%.cpp
+	$(CXX) -std=c++11 -pedantic -c $(COMM_CXXFLAGS) $(CXXFLAGS) $<
 
 #Rule for building so
 define build_so
