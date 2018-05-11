@@ -8,7 +8,7 @@ $(BINS)_SRC :=
 $(BINS)_LDLIBS :=
 
 LIBS := libpub 
-libpub_SRC := base_exception.cc
+libpub_SRC := base_exception.cc pub_exception.cc
 
 CFLAGS :=
 CXXFLAGS :=

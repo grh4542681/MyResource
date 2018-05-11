@@ -11,8 +11,6 @@ public:
     ~BaseCommunication(){};
     virtual void open() throw(ComException){};
     virtual void close() throw(ComException){};
-    virtual void write() throw(ComException){};
-    virtual void read() throw(ComException){};
 };
 
 }

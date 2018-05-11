@@ -16,7 +16,7 @@ CC=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/gcc
 #CC=gcc
 CXX=/home/ezgaoro/grh/MyResource/gcc-4.8.5/bin/g++
 #CXX=g++
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ezgaoro/grh/MyResource/gmp-6.1.0/lib:/home/ezgaoro/grh/MyResource/mpfr-3.1.4/lib://home/ezgaoro/grh/MyResource/mpc-1.0.3/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ezgaoro/grh/MyResource/gmp-6.1.0/lib:/home/ezgaoro/grh/MyResource/mpfr-3.1.4/lib:/home/ezgaoro/grh/MyResource/mpc-1.0.3/lib:/home/ezgaoro/grh/MyResource/gcc-4.8.5/lib64
 
 AR=ar
 OPTIMIZATION=-O2
@@ -84,7 +84,7 @@ $(foreach lib,$(LIBS),$(eval $(call build_a,$(lib))))
 $(foreach bin,$(BINS),$(eval $(call build_bin,$(bin))))
 
 all:*.o $(SO_TARGET) $(A_TARGET) $(BIN_TARGET)
-	#$(MV) *.o $(OBJ_PATH)
+	$(MV) *.o $(OBJ_PATH)
 
 .PHONY: clean
 clean:

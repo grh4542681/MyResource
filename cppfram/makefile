@@ -1,4 +1,6 @@
-SUBDIRS=$(PLATTOP)/public/src
+SUBDIRS=$(PLATTOP)/module/log/src \
+	$(PLATTOP)/module/public/src \
+    $(PLATTOP)/module/com/src
 
 .PHONY: all
 all:

@@ -5,7 +5,6 @@
 #include <map>
 #include <memory>
 
-#include <communication.h>
 #include <com_exception.h>
 
 namespace COM{
@@ -21,12 +20,16 @@ enum class PROTOCOL:unsigned int{
 };
 
 enum class STATUS:unsigned int{
-    S_READY = 1,
+    S_UNUSE = 1,
+    S_INIT,
+    S_ACCEPT,
+    S_READY,
+    S_CLOSE,
+
     C_READY,
 };
 
 typedef struct _sock_info{
-    MODE mode;
     PROTOCOL protocol;
     std::string addr;
     short port;
@@ -51,23 +54,16 @@ public:
     void print_opt(void) noexcept;
 };
 
-class ComBaseSocket : public BaseCommunication{
-private:
-    int sock_fd;
-    STATUS status;
-
-    void _open_s();
-    void _open_c();
+class ComBaseSocket{
 public:
+    int sockfd;
     std::shared_ptr<ComBaseSockArgs> sp_sockargs;
     ComBaseSocket();
     ComBaseSocket(SockInfo*);
     ~ComBaseSocket();
 
-    void open() throw(ComException);
-    void close() throw(ComException);
-    void write() throw(ComException);
-    void read() throw(ComException);
+    virtual void s_open() throw(ComException) {};
+    virtual void s_close() throw(ComException) {};
 
     void change_opt(SockOpt*) throw(ComException);
 };

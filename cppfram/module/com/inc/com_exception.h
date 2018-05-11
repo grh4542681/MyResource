@@ -16,7 +16,9 @@ enum ComErrMark{
     UNKNOW_PROTOCOL,
     SOCK_INI_ERR,
     BIND_INI_ERR,
-    LISTEN_INI_ERR
+    LISTEN_INI_ERR,
+    BAD_STATUS,
+    SOCK_ACCEPT_ERR
 };
 
 class ComException : public Global::BaseException{

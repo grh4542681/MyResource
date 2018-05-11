@@ -4,6 +4,7 @@
 #include <com_exception.h>
 #include <string>
 #include <base_exception.h>
+#include <com_socket_server.h>
 
 #include <com_log.h>
 using namespace std;
@@ -12,11 +13,10 @@ int main(){
     cout<<"------------------------------"<<__cplusplus<<endl;
     LOGINIT((char*)(std::string("/home/ezgaoro/grh/MyResource/cppfram/etc/log.conf").c_str()));
     COM::SockInfo sockinfo;
-    sockinfo.mode = COM::MODE::CLIENT;
     sockinfo.protocol = COM::PROTOCOL::TCP;
     sockinfo.addr = "127.0.0.1";
     sockinfo.port = 8888;
-
+#if 0
     COM::ComBaseSocket sockargs(&sockinfo);
 
     int a = 3;
@@ -31,6 +31,12 @@ int main(){
         cout<<e.what()<<endl;
         cout<<e.trace()<<endl;
     }
+#endif
+
+    COM::ComSocketServer s(&sockinfo);
+    s.s_open();
+    //cout<<"status "<<s.status<<endl;
+    s.s_accept();
 
     LOGFREE();
 
