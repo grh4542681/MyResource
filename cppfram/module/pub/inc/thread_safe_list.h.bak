@@ -1,0 +1,58 @@
+#ifndef __THREAD_SAFE_LIST_H__
+#define __THREAD_SAFE_LIST_H__
+
+#include <boost/thread/mutex>
+#include <list>
+
+namespace Pub {
+
+template <typename T>
+class ThreadSafeList {
+private:
+    using rw_mutex = typename boost::shared_mutex;
+    using r_lock = typename boost::shared_lock<rw_lock>;
+    using w_lock = typename boost::unique_lock<rw_lock>;
+    
+    std::list<T> list;
+    using data_type = typename std::list<T>::value_type;
+
+    rw_mutex list_mutex;
+public;
+    ThreadSafeList() = default;
+    ThreadSafeList(ThreadSafeList&) = delete;
+    ThreadSafeList(std::list<T> &c):list(c) { }
+    ~ThreadSafeList();
+
+    void insert(date_type& data) {
+        w_lock wk(list_mutex);
+        list.insert(data);
+    }
+
+    void remove(const data_type& data) {
+        w_lock wk(list_mutex);
+        list.remove(data);
+    }
+
+    void exec_one(bool(judge)(data_type&), void(exec)(data_type&) {
+        w_lock rk(list_mutex); 
+        for (std::list<T>::iterator it = list.begin(); it != list.end(); it++) {
+            if (func(*it)) {
+                exec(*it);
+                break;
+            }
+        }
+    }
+
+    void exec_each(bool(exec)(data_type&)) {
+        w_lock rk(list_mutex); 
+        for (std::list<T>::iterator it = list.begin(); it != list.end(); it++) {
+            exec(*it);
+        }
+    }
+
+    void read_one
+};
+
+}
+
+#endif

@@ -11,7 +11,8 @@ std::map<std::string, std::string> ComErrCode = {
     { "BIND_INI_ERR", "Bind socket error" },
     { "LISTEN_INI_ERR", "Listen socket error" },
     { "BAD_STATUS", "Bad status" },
-    { "SOCK_ACCEPT_ERR", "Socket fd accept error"}
+    { "SOCK_ACCEPT_ERR", "Socket fd accept error"},
+    { "UNKNOW_CLIENT", "Unknow client"}
 };
 
 ComException::ComException(std::string errmark):Global::BaseException(errmark)

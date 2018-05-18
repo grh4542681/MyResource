@@ -10,6 +10,7 @@
 #include <com_exception.h>
 #include <com_socket_server.h>
 #include <com_sockfd_op.h>
+#include <thread_safe_queue.h>
 
 namespace COM {
 
@@ -53,7 +54,7 @@ void ComSocketServer::s_open() throw(ComException)
             if (ret < 0) {
                 throw ComException(ComErrCode["LISTEN_INI_ERR"], ComErrMark::LISTEN_INI_ERR);
             }
-            this->status = STATUS::S_ACCEPT;
+            this->status = STATUS::S_READY;
             break;
         case COM::PROTOCOL::UDP:
             break;
@@ -64,49 +65,76 @@ void ComSocketServer::s_open() throw(ComException)
 
 ComSockFdOp* ComSocketServer::s_accept() throw(ComException)
 {
-    if (this->status != STATUS::S_ACCEPT) {
+    if (this->status != STATUS::S_READY) {
         throw ComException(ComErrCode["BAD_STATUS"], ComErrMark::BAD_STATUS);
     }
-    this->status = STATUS::S_READY;
+    this->status = STATUS::S_ACCEPT;
     struct sockaddr_in cli_addr;
     socklen_t cli_addr_len;
     int apt_fd = accept(this->sockfd, (struct sockaddr*)(&cli_addr), &cli_addr_len);
     if (apt_fd < 0) {
         throw ComException(ComErrCode["SOCK_ACCEPT_ERR"], ComErrMark::SOCK_ACCEPT_ERR);
     }
+    this->status = STATUS::S_READY;
 
     std::shared_ptr<ComSockFdOp> sp_client = std::make_shared<ComSockFdOp>(apt_fd);
     sp_client->ip = inet_ntoa(cli_addr.sin_addr);
     sp_client->port = ntohs(cli_addr.sin_port);
+    sp_client->index = apt_fd;
 
     clients.push_back(*sp_client);
-    sp_client->status = STATUS::S_READY;
+    sp_client->status = STATUS::F_READY;
+    this->cur_clients++;
     return (sp_client.get());
 }
 
 void ComSocketServer::c_close(ComSockFdOp* client) throw(ComException)
 {
-    if (client->status != STATUS::S_READY) {
-        client->status = STATUS::S_CLOSE;
+    if (this->status != STATUS::S_INIT || this->status != STATUS::S_UNUSE) {
+        throw ComException(ComErrCode["BAD_STATUS"], ComErrMark::BAD_STATUS);
+    }
+    std::list<ComSockFdOp>::iterator it = this->clients.begin();
+    while (it !=clients.end()) {
+        if (it->index == client->index) {
+            break;
+        }
+    }
+    if (it == this->clients.end()) {
+        throw ComException(ComErrCode["UNKNOW_CLIENT"], ComErrMark::UNKNOW_CLIENT);
+    }
+    if (client->status != STATUS::F_READY) {
+        client->status = STATUS::F_CLOSE;
         return;
     }
     close(client->fd);
-    client->status = STATUS::S_CLOSE;
+    client->status = STATUS::F_CLOSE;
     (this->cur_clients)--;
 }
 
 void ComSocketServer::s_close() throw(ComException)
 {
+    if (this->status != STATUS::S_READY) {
+        throw ComException(ComErrCode["BAD_STATUS"], ComErrMark::BAD_STATUS);
+    }
     std::list<ComSockFdOp>::iterator it;
     it = this->clients.begin();
     while (it != clients.end()) {
-        if (it->status == STATUS::S_READY) {
+        if (it->status != STATUS::F_CLOSE) {
             close(it->fd);
-            it->status = STATUS::S_CLOSE;
+            it->status = STATUS::F_CLOSE;
             (this->cur_clients)--;
         }
     }
     clients.clear();
+}
+
+void ComSocketServer::start() throw(ComException)
+{
+    try {
+        this->s_open();
+    } catch (ComException &e) {
+        throw e;
+    }
 }
 
 }

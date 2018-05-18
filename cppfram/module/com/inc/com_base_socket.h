@@ -27,6 +27,11 @@ enum class STATUS:unsigned int{
     S_CLOSE,
 
     C_READY,
+
+    F_READY,
+    F_CLOSE,
+    F_READBALE,
+    F_WRITEBALE,
 };
 
 typedef struct _sock_info{

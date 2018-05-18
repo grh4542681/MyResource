@@ -10,6 +10,7 @@ namespace COM {
 
 class ComSockFdOp {
 public:
+    int index;
     int fd;
     std::string ip;
     int port;

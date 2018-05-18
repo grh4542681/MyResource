@@ -11,12 +11,7 @@ namespace Pub{
 
 enum PubErrMark{
     BAD_ARGS = 1,
-    UNKNOW_OPTNAME,
-    UNKNOW_RUNMODE,
-    UNKNOW_PROTOCOL,
-    SOCK_INI_ERR,
-    BIND_INI_ERR,
-    LISTEN_INI_ERR
+    UNKNOW_OPTNAME
 };
 
 class PubException : public Global::BaseException{
